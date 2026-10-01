@@ -1,6 +1,7 @@
 package com.example.board.controller;
 
 import com.example.board.dto.PostCreateRequest;
+import com.example.board.dto.PostUpdateRequest;
 import com.example.board.entity.Post;
 import com.example.board.service.PostService;
 import org.springframework.http.HttpStatus;
@@ -42,4 +43,9 @@ public class PostController {
         postService.deletePost(id);
     }
 
+    @PutMapping("/posts/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Post update(@PathVariable Long id, @RequestBody PostUpdateRequest postUpdateRequest) {
+        return postService.updatePost(id, postUpdateRequest);
+    }
 }
