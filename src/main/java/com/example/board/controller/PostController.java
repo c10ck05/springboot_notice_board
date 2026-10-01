@@ -4,10 +4,9 @@ import com.example.board.dto.PostCreateRequest;
 import com.example.board.entity.Post;
 import com.example.board.service.PostService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -23,5 +22,17 @@ public class PostController {
     @ResponseStatus(HttpStatus.CREATED)
     public Post create(@RequestBody PostCreateRequest postCreateRequest) {
         return postService.postBoard(postCreateRequest);
+    }
+
+    @GetMapping("/posts")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Post> readAll() {
+        return postService.getPosts();
+    }
+
+    @GetMapping("/posts/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Post read(@PathVariable Long id) {
+        return postService.getPost(id);
     }
 }
