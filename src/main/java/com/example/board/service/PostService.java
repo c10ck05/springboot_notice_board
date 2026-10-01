@@ -26,6 +26,14 @@ public class PostService {
         return postRepository.findAll();
     }
 
+    public void deletePost(Long id) {
+        if (postRepository.existsById(id)) {
+            postRepository.deleteById(id);
+        } else {
+            throw new ResponseStatusException("찾는 게시물이 없습니다.");
+        }
+    }
+
     public Post getPost(Long id) {
         return postRepository.findById(id).orElseThrow(() -> new ResponseStatusException("찾는 게시물이 없습니다."));
     }

@@ -35,4 +35,11 @@ public class PostController {
     public Post read(@PathVariable Long id) {
         return postService.getPost(id);
     }
+
+    @DeleteMapping("/posts/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        postService.deletePost(id);
+    }
+
 }
